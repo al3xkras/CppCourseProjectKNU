@@ -1,5 +1,14 @@
-/.idea/
 /cmake-build-debug/
+
+### CLion ###
+/.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
 
 *.exe
 *.bin
+*.ini
