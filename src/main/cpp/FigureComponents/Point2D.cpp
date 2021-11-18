@@ -36,3 +36,20 @@ std::ostream &operator<<(std::ostream &os, const Point2D &point) {
     os << "x: " << point.getX() << " y: " << point.getY();
     return os;
 }
+
+double Point2D::getCoordinate(int index) {
+    if (index==0){
+        return getX();
+    } else if (index==1){
+        return getY();
+    }
+    return DBL_MIN;
+}
+
+bool Point2D::operator==(const Point2D &rhs) const {
+    return x == rhs.x && y == rhs.y;
+}
+
+bool Point2D::operator!=(const Point2D &rhs) const {
+    return !(rhs == *this);
+}

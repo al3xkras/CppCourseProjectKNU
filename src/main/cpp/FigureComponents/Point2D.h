@@ -3,13 +3,15 @@
 
 
 #include <ostream>
+#include "abstract/AbstractPoint.h"
 
-class Point2D {
+struct Point2D: public AbstractPoint {
 private:
     double x;
     double y;
 public:
     Point2D(double x, double y);
+    double getCoordinate(int index) override;
 
     double dotWith(Point2D other);
     double distanceTo(Point2D other);
@@ -18,6 +20,10 @@ public:
     double getY() const;
     void setX(double X);
     void setY(double Y);
+
+    bool operator==(const Point2D &rhs) const;
+
+    bool operator!=(const Point2D &rhs) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Point2D &point);
 };

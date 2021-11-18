@@ -1,5 +1,5 @@
 #include "Polygon2D.h"
-#include "../FigureComponents/Line2D.h"
+#include "../FigureComponents/Segment2D.h"
 #include "cmath"
 
 Polygon2D::Polygon2D(Point *points, size_t points_size) {
@@ -10,7 +10,7 @@ Polygon2D::Polygon2D(Point *points, size_t points_size) {
 bool Polygon2D::isConvex() {
     for (int i=0; i<points_size; i++){
         int j = (i+1)%points_size;
-        Line2D currentEdge(points[i],points[j]);
+        Segment2D currentEdge(points[i], points[j]);
 
         //std::cout<<i<<std::endl<<j<<std::endl<<currentEdge<<std::endl;
         int previous_sign = 0;

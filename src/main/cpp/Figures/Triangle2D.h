@@ -2,8 +2,8 @@
 #define CPPCOURSEPROJECTKNU_TRIANGLE2D_H
 
 #include <ostream>
-#include "../FigureComponents/Point.h"
-#include "../FigureComponents/Figure.h"
+#include "../FigureComponents/Point2D.h"
+#include "../Figures/abstract/Figure.h"
 
 struct TriangleEdgesLength{
 private:
@@ -25,7 +25,7 @@ private:
     Point* points;
 
 public:
-    Triangle2D(const Point &a, const Point &b, const Point &c);
+    Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c);
     virtual ~Triangle2D();
 
     bool isConvex() override;
@@ -35,6 +35,8 @@ public:
     double area();
 
     friend std::ostream &operator<<(std::ostream &os, const Triangle2D &triangle);
+
+
 };
 
 

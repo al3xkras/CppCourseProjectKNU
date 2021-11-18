@@ -2,7 +2,7 @@
 #include "cstdlib"
 #include "cmath"
 
-Triangle2D::Triangle2D(const Point &a, const Point &b, const Point &c){
+Triangle2D::Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c){
     points = (Point*)calloc(3,sizeof(Point));
     points[0] = a;
     points[1] = b;
