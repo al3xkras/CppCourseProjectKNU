@@ -1,7 +1,6 @@
 
 <html lang="en">
 <head>
-    <title>README</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body> 
