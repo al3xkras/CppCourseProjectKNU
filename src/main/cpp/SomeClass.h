@@ -1,0 +1,14 @@
+//
+// Created by Alex on 18.11.2021.
+//
+
+#ifndef CPPCOURSEPROJECTKNU_SOMECLASS_H
+#define CPPCOURSEPROJECTKNU_SOMECLASS_H
+
+
+class SomeClass {
+
+};
+
+
+#endif //CPPCOURSEPROJECTKNU_SOMECLASS_H
