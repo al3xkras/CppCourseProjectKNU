@@ -15,9 +15,9 @@ public:
     Segment2D(Point2D &a, Point2D &b);
     double angleWithPoint(Point2D point);
 
-    Point2D& intersection(AbstractLine* other) override;
+    Point2D* intersection(AbstractLine* other) override;
 
-    bool containsPoint(Point2D point);
+    bool containsPoint(Point2D& point);
 
     friend std::ostream &operator<<(std::ostream &os, const Segment2D &line);
 

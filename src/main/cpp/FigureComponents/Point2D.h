@@ -26,6 +26,8 @@ public:
     bool operator!=(const Point2D &rhs) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Point2D &point);
+
+    virtual ~Point2D();
 };
 
 

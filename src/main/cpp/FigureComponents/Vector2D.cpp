@@ -30,3 +30,8 @@ Vector2D &Vector2D::operator+(const Vector2D &other) const {
 double Vector2D::operator*(const Vector2D &other) const {
     return (x1* other.getX() + x2 * other.getY());
 }
+
+std::ostream &operator<<(std::ostream &os, const Vector2D &d) {
+    os << "Vector (x1: " << d.x1 << " x2: " << d.x2<<")";
+    return os;
+}

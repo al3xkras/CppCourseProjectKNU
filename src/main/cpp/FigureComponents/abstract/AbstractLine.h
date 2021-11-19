@@ -6,7 +6,7 @@
 #include "AbstractPoint.h"
 
 class AbstractLine {
-    virtual AbstractPoint& intersection(AbstractLine* other) = 0;
+    virtual AbstractPoint* intersection(AbstractLine* other) = 0;
 };
 
 

@@ -1,5 +1,6 @@
 #include "cmath"
 #include "Point2D.h"
+#include "iostream"
 
 Point2D::Point2D(double x, double y) : x(x), y(y) {}
 
@@ -33,7 +34,7 @@ double Point2D::distanceTo(Point2D other) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Point2D &point) {
-    os << "x: " << point.getX() << " y: " << point.getY();
+    os << "Point (x: " << point.getX() << " y: " << point.getY()<<")";
     return os;
 }
 
@@ -52,4 +53,8 @@ bool Point2D::operator==(const Point2D &rhs) const {
 
 bool Point2D::operator!=(const Point2D &rhs) const {
     return !(rhs == *this);
+}
+
+Point2D::~Point2D() {
+    std::cout<<*this<<" was deleted"<<std::endl;
 }

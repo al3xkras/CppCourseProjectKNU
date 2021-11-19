@@ -2,6 +2,8 @@
 #define CPPCOURSEPROJECTKNU_VECTOR2D_H
 
 
+#include <ostream>
+
 class Vector2D {
 private:
     double x1;
@@ -16,6 +18,8 @@ public:
 
     double getX() const;
     double getY() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Vector2D &d);
 };
 
 

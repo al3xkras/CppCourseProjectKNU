@@ -8,28 +8,28 @@
 
 class Line2D: public AbstractLine {
 private:
-    double h_x2;
-    Vector2D* line_vector;
+    double h_Y;
+    Vector2D line_vector;
 public:
-    Line2D(double h_x2, double vec_x1, double vec_x2){
-        this->h_x2=h_x2;
-        Vector2D vector2D = Vector2D(vec_x1,vec_x2);
-        line_vector = &vector2D;
+    Line2D(double h_x2, double vec_x1, double vec_x2): line_vector(vec_x1,vec_x2){
+        this->h_Y=h_x2;
     }
 
-    Point2D& intersection(AbstractLine* other) override;
+    Point2D* intersection(AbstractLine* other) override;
 
     bool operator==(const Line2D &other) const {
-        return h_x2 == other.h_x2 && line_vector == other.line_vector;
+        return h_Y == other.h_Y && line_vector == other.line_vector;
     }
     bool operator!=(const Line2D &other) const {
         return !(other == *this);
     }
-    double getH() const {
-        return h_x2;
+    double operator()(const double x1);
+
+    double getH() {
+        return h_Y;
     }
-    Vector2D getLineVector() const {
-        return *line_vector;
+    Vector2D getLineVector() {
+        return line_vector;
     }
 };
 
