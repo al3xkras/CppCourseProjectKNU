@@ -3,11 +3,15 @@
 
 class Figure {
 public:
-    virtual void isConvex() = 0;
+    virtual bool isConvex() = 0;
     virtual double perimeter() = 0;
 
-    friend std::ostream &operator<<(std::ostream &os, const Figure &figure) {
+    virtual std::ostream &toString(std::ostream &os) {
         return os;
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, Figure &figure) {
+        return figure.toString(os);
     };
 };
 

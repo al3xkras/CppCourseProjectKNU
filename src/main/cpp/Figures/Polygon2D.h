@@ -16,8 +16,7 @@ public:
 
     bool isConvex() override;
     double perimeter() override;
-
-    friend std::ostream &operator<<(std::ostream &os, const Polygon2D &polygon);
+    void toString(std::ostream &os) override;
 };
 
 

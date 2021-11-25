@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "src/main/cpp/FigureComponents/Line2D.h"
+#include "src/main/cpp/Figures/Triangle2D.h"
 
 int main() {
 
-    Point2D point1(0,0);
+    /*Point2D point1(0,0);
     Point2D point2(1,1);
     Point2D point3(1,0);
     Point2D point4(2,0);
@@ -25,6 +26,14 @@ int main() {
     free(p1);
     free(p2);
     free(p3);
+     */
+
+    Triangle2D triangle2D(Point2D(0,0),Point2D(0,1),Point2D(1,0));
+
+    auto* triangle = dynamic_cast<Figure*>(&triangle2D);
+    std::cout << *triangle << std::endl;
+
+    delete(&triangle);
 
     return 0;
 }

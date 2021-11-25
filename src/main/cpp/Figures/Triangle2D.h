@@ -22,7 +22,7 @@ public:
 
 class Triangle2D : public  Figure{
 private:
-    Point* points;
+    Point2D* points;
 
 public:
     Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c);
@@ -34,9 +34,7 @@ public:
     TriangleEdgesLength getEdgesLength();
     double area();
 
-    friend std::ostream &operator<<(std::ostream &os, const Triangle2D &triangle);
-
-
+    std::ostream &toString(std::ostream &os) override;
 };
 
 

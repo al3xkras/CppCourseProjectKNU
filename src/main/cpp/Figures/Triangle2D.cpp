@@ -3,14 +3,14 @@
 #include "cmath"
 
 Triangle2D::Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c){
-    points = (Point*)calloc(3,sizeof(Point));
+    points = (Point2D*)calloc(3,sizeof(Point2D));
     points[0] = a;
     points[1] = b;
     points[2] = c;
 }
 
 Triangle2D::~Triangle2D() {
-    delete[](&points);
+    free(points);
 }
 
 TriangleEdgesLength Triangle2D::getEdgesLength() {
@@ -33,19 +33,20 @@ double Triangle2D::perimeter() {
     return (length.getAb()+length.getBc()+length.getAc());
 }
 
-std::ostream &operator<<(std::ostream &os, const Triangle2D &triangle) {
-    os << "Triangle2D: ";
-    for (int i=0; i<3; i++){
-        os<<'('<<triangle.points[i]<<"), ";
-    }
-    return os;
-}
 
 bool Triangle2D::isConvex() {
     if (area()!=0){
         return true;
     }
     return false;
+}
+
+std::ostream &Triangle2D::toString(std::ostream &os) {
+    os << "Triangle2D: ";
+    for (int i=0; i<3; i++){
+        os<<'('<<points[i]<<"), ";
+    }
+    return os;
 }
 
 TriangleEdgesLength::TriangleEdgesLength(double ab, double bc, double ac) : AB(ab), BC(bc), AC(ac) {}

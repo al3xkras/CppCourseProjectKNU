@@ -42,10 +42,7 @@ Polygon2D::~Polygon2D() {
 }
 
 std::ostream &operator<<(std::ostream &os, const Polygon2D &polygon) {
-    os<<"Polygon2D: ";
-    for (int i=0; i<polygon.points_size; i++){
-        os<<'('<<polygon.points[i]<<") ";
-    }
+
     return os;
 }
 
@@ -56,4 +53,11 @@ double Polygon2D::perimeter() {
         perimeter += points[i].distanceTo(points[j]);
     }
     return perimeter;
+}
+
+void Polygon2D::toString(std::ostream &os) {
+    os<<"Polygon2D: ";
+    for (int i=0; i<polygon.points_size; i++){
+        os<<'('<<polygon.points[i]<<") ";
+    }
 }

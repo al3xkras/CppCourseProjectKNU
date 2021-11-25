@@ -16,4 +16,6 @@ add_executable(CppCourseProjectKNU main.cpp
         src/main/cpp/FigureComponents/abstract/AbstractLine.h
         src/main/cpp/FigureComponents/abstract/AbstractPoint.h
         src/main/cpp/FigureComponents/Segment2D.h
-        src/main/cpp/FigureComponents/Segment2D.cpp)
+        src/main/cpp/FigureComponents/Segment2D.cpp
+        src/main/cpp/Figures/Triangle2D.h
+        src/main/cpp/Figures/Triangle2D.cpp)
