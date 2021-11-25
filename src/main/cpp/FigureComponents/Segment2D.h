@@ -12,7 +12,9 @@ private:
     Point2D a;
     Point2D b;
 public:
-    Segment2D(Point2D &a, Point2D &b);
+    Segment2D(): a(), b() {};
+
+    Segment2D(Point2D a, Point2D b);
     double angleWithPoint(Point2D point);
 
     Point2D* intersection(AbstractLine* other) override;

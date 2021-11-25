@@ -10,7 +10,7 @@ Triangle2D::Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c){
 }
 
 Triangle2D::~Triangle2D() {
-    free(points);
+    delete[](points);
 }
 
 TriangleEdgesLength Triangle2D::getEdgesLength() {

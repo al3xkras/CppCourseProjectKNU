@@ -5,11 +5,15 @@
 #include <ostream>
 #include "abstract/AbstractPoint.h"
 
+
+
 struct Point2D: public AbstractPoint {
 private:
     double x;
     double y;
 public:
+    Point2D(): x(DBL_MIN), y(DBL_MIN){};
+
     Point2D(double x, double y);
     double getCoordinate(int index) override;
 

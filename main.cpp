@@ -2,10 +2,11 @@
 
 #include "src/main/cpp/FigureComponents/Line2D.h"
 #include "src/main/cpp/Figures/Triangle2D.h"
+#include "src/main/cpp/Figures/Polygon2D.h"
+#include "src/main/cpp/FigureComponents/Polyline2D.h"
 
-int main() {
-
-    /*Point2D point1(0,0);
+void testFigureComponents(){
+    Point2D point1(0,0);
     Point2D point2(1,1);
     Point2D point3(1,0);
     Point2D point4(2,0);
@@ -26,14 +27,49 @@ int main() {
     free(p1);
     free(p2);
     free(p3);
-     */
+}
 
+void testFigures(){
     Triangle2D triangle2D(Point2D(0,0),Point2D(0,1),Point2D(1,0));
 
-    auto* triangle = dynamic_cast<Figure*>(&triangle2D);
-    std::cout << *triangle << std::endl;
+    Point2D points[6] = {
+            Point2D(2,1),
+            Point2D(7,2),
+            Point2D(8,5),
+            Point2D(5,7),
+            Point2D(2,5),
+            Point2D(4,4)
+    };
+    Polygon2D polygon2D(points,6);
 
-    delete(&triangle);
+    std::cout << *dynamic_cast<Figure*>(&triangle2D) << std::endl;
+    std::cout << *dynamic_cast<Figure*>(&polygon2D) << std::endl;
 
+    std::cout << std::boolalpha << "Is convex: " << polygon2D.isConvex() << std::endl;
+}
+
+void testPolyline(){
+    Point2D points[7] = {
+            Point2D(2,1),
+            Point2D(7,2),
+            Point2D(8,5),
+            Point2D(5,7),
+            Point2D(2,5),
+            Point2D(4,4),
+            Point2D(4,8)
+    };
+
+    Segment2D s1(Point2D(5,7),Point2D(2,5));
+    Segment2D s2(Point2D(4,4),Point2D(4,8));
+
+    Polyline2D pLine(points,7);
+    //std::cout << pLine <<" Has self-intersections: "<<std::boolalpha<<pLine.hasSelfIntersections()<< std::endl;
+    std::cout<<std::boolalpha<<pLine.hasSelfIntersections()<< std::endl;
+
+    //std::cout<<*s1.intersection(&s2)<<std::endl;
+}
+
+int main() {
+    testPolyline();
     return 0;
 }

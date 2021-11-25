@@ -16,7 +16,7 @@ public:
 
     bool isConvex() override;
     double perimeter() override;
-    void toString(std::ostream &os) override;
+    std::ostream &toString(std::ostream &os) override;
 };
 
 

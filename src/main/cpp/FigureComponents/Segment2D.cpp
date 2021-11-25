@@ -3,7 +3,7 @@
 #include "cmath"
 #include "iostream"
 
-Segment2D::Segment2D(Point2D &a, Point2D &b) : a(a), b(b) {}
+Segment2D::Segment2D(Point2D a, Point2D b) : a(a), b(b) {}
 
 double Segment2D::angleWithPoint(Point2D point) {
     Point2D lineVector1(b.getX() - a.getX(), b.getY() - a.getY());
@@ -69,7 +69,7 @@ Point2D* segmentIntersection(Segment2D &segment1, Segment2D &segment2) {
 Point2D* Segment2D::intersection(AbstractLine* line) {
     auto* line2D = dynamic_cast<Line2D*>(line);
     if (line2D){
-        std::cout<<"abstract line is line"<<std::endl;
+        //std::cout<<"abstract line is line"<<std::endl;
         Vector2D vector = (*line2D).getLineVector();
 
         double x_min = std::min(a.getX(),b.getX());
@@ -89,12 +89,11 @@ Point2D* Segment2D::intersection(AbstractLine* line) {
     auto* segment2D = dynamic_cast<Segment2D*>(line);
 
     if (segment2D){
-        std::cout<<"abstract line is segment"<<std::endl;
+        //std::cout<<"abstract line is segment"<<std::endl;
         Point2D* point2D = segmentIntersection(*this,*segment2D);
         return point2D;
     }
-    std::cout<<"Bad cast (Segment2D.cpp, line 42)";
-    throw std::bad_cast();
+    throw std::runtime_error("Bad cast (Segment2D.cpp, line 42)");
 }
 
 
@@ -105,9 +104,22 @@ bool Segment2D::containsPoint(Point2D& point){
     long v_2_x = (long)((a.getX()-point.getX())*10000);
     long v_2_y = (long)((a.getY()-point.getY())*10000);
 
+    //std::cout<<v_1_x<<' '<<v_1_y<<' '<<v_2_x<<' '<<v_2_y<<std::endl;
+    if (v_1_x==0){
+        if (v_2_x!=0) return false;
+        if (v_1_y==0 && v_2_y==0) return true;
+        return (long)((double)v_1_y/v_2_y)>0;
+    }
+
+    if (v_1_y==0){
+        if (v_2_y!=0) return false;
+        return (long)((double)v_1_x/v_2_x)>0;
+    }
+
     long v1 = (long)((double)v_1_x/v_2_x),
          v2 = (long)((double)v_1_y/v_2_y);
 
+    //std::cout<<'('<<v1<<' '<<v2<<')'<<std::endl;
     return (v1 == v2 & v1>0 & v2>0);
 }
 
@@ -133,5 +145,5 @@ bool Segment2D::operator!=(const Segment2D &rhs) const {
 }
 
 Segment2D::~Segment2D(){
-    std::cout<<*this<<" was deleted"<<std::endl;
+    //std::cout<<*this<<" was deleted"<<std::endl;
 }

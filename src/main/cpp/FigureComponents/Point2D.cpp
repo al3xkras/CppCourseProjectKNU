@@ -56,5 +56,5 @@ bool Point2D::operator!=(const Point2D &rhs) const {
 }
 
 Point2D::~Point2D() {
-    std::cout<<*this<<" was deleted"<<std::endl;
+   // std::cout<<*this<<" was deleted"<<std::endl;
 }

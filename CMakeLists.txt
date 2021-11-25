@@ -18,4 +18,8 @@ add_executable(CppCourseProjectKNU main.cpp
         src/main/cpp/FigureComponents/Segment2D.h
         src/main/cpp/FigureComponents/Segment2D.cpp
         src/main/cpp/Figures/Triangle2D.h
-        src/main/cpp/Figures/Triangle2D.cpp)
+        src/main/cpp/Figures/Triangle2D.cpp
+        src/main/cpp/Figures/Polygon2D.h
+        src/main/cpp/Figures/Polygon2D.cpp
+        src/main/cpp/FigureComponents/Polyline2D.h
+        src/main/cpp/FigureComponents/Polyline2D.cpp)
