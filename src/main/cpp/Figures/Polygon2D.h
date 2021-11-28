@@ -20,6 +20,7 @@ public:
 
     bool isConvex() override;
     double perimeter() override;
+    double area();
     std::ostream &toString(std::ostream &os) override;
 };
 

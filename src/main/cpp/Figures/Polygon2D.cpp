@@ -92,3 +92,15 @@ std::vector<Triangle2D> Polygon2D::triangulation() {
 
     return triangles;
 }
+
+double Polygon2D::area() {
+    double x[points_size];
+    double y[points_size];
+
+    for (int i=0; i<points_size; i++){
+        x[i] = points[i].getX();
+        y[i] = points[i].getY();
+    }
+
+    return polygon_area((int)points_size,x,y);
+}
