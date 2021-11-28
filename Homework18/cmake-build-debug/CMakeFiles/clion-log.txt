@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\Public\Projects\CppCourseProjectKNU\Homework18 Select CMakeLists.txt

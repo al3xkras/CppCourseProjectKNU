@@ -69,7 +69,26 @@ void testPolyline(){
     //std::cout<<*s1.intersection(&s2)<<std::endl;
 }
 
+void testTriangulation(){
+    Point2D points[6] = {
+            Point2D(2,1),
+            Point2D(7,2),
+            Point2D(8,5),
+            Point2D(5,7),
+            Point2D(2,5),
+            Point2D(4,4)
+    };
+    Polygon2D polygon2D(points,6);
+
+    std::vector<Triangle2D> triangulation = polygon2D.triangulation();
+
+    for (Triangle2D triangle2D: triangulation){
+        std::cout<<triangle2D<<std::endl;
+    }
+
+}
+
 int main() {
-    testPolyline();
+    testTriangulation();
     return 0;
 }

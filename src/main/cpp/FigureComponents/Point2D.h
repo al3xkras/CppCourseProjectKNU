@@ -13,7 +13,10 @@ private:
     double y;
 public:
     Point2D(): x(DBL_MIN), y(DBL_MIN){};
-
+    Point2D(const Point2D &p) {
+        this->x = p.x;
+        this->y = p.y;
+    }
     Point2D(double x, double y);
     double getCoordinate(int index) override;
 

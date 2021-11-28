@@ -1,9 +1,14 @@
+#include <iostream>
 #include "Polygon2D.h"
 #include "../FigureComponents/Segment2D.h"
 #include "cmath"
 
-Polygon2D::Polygon2D(Point2D *points, size_t points_size) {
-    this->points = points;
+#include "../triangulate/triangulate.h"
+
+Polygon2D::Polygon2D(Point2D *points, size_t points_size): points(points_size) {
+    for (int i=0; i<points_size; i++){
+        this->points[i] = points[i];
+    }
     this->points_size=points_size;
 }
 
@@ -38,7 +43,6 @@ bool Polygon2D::isConvex() {
 }
 
 Polygon2D::~Polygon2D() {
-    delete[](points);
 }
 
 std::ostream &operator<<(std::ostream &os, const Polygon2D &polygon) {
@@ -61,4 +65,30 @@ std::ostream &Polygon2D::toString(std::ostream &os) {
         os<<'('<<points[i]<<") ";
     }
     return os;
+}
+
+std::vector<Triangle2D> Polygon2D::triangulation() {
+    double x[points_size];
+    double y[points_size];
+
+    for (int i=0; i<points_size; i++){
+        x[i] = points[i].getX();
+        y[i] = points[i].getY();
+    }
+
+    int* triangulation = polygon_triangulate((int)points_size,x,y);
+
+    std::vector<Triangle2D> triangles;
+
+    for (int i=0; i<3*(points_size-2); i+=3){
+        Point2D a(points[triangulation[i]]);
+        Point2D b(points[triangulation[i+1]]);
+        Point2D c(points[triangulation[i+2]]);
+
+        triangles.emplace_back(a,b,c);
+    }
+
+    delete triangulation;
+
+    return triangles;
 }

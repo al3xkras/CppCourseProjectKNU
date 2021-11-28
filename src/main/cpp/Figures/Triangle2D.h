@@ -2,6 +2,7 @@
 #define CPPCOURSEPROJECTKNU_TRIANGLE2D_H
 
 #include <ostream>
+#include <vector>
 #include "../FigureComponents/Point2D.h"
 #include "../Figures/abstract/Figure.h"
 
@@ -22,7 +23,7 @@ public:
 
 class Triangle2D : public  Figure{
 private:
-    Point2D* points;
+    std::vector<Point2D> points;
 
 public:
     Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c);

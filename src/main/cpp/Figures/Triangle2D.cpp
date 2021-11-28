@@ -1,16 +1,14 @@
 #include "Triangle2D.h"
-#include "cstdlib"
 #include "cmath"
 
-Triangle2D::Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c){
-    points = (Point2D*)calloc(3,sizeof(Point2D));
+Triangle2D::Triangle2D(const Point2D &a, const Point2D &b, const Point2D &c): points(3){
     points[0] = a;
     points[1] = b;
     points[2] = c;
 }
 
 Triangle2D::~Triangle2D() {
-    delete[](points);
+
 }
 
 TriangleEdgesLength Triangle2D::getEdgesLength() {
