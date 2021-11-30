@@ -5,7 +5,7 @@
 
 Segment2D::Segment2D(Point2D a, Point2D b) : a(a), b(b) {}
 
-double Segment2D::angleWithPoint(Point2D point) {
+double Segment2D::angleWithPoint(const Point2D& point) {
     Point2D lineVector1(b.getX() - a.getX(), b.getY() - a.getY());
     Point2D lineVector2(point.getX() - a.getX(), point.getY() - a.getY());
 
@@ -20,12 +20,11 @@ double Segment2D::angleWithPoint(Point2D point) {
 }
 
 
-Point2D* segmentIntersection(Segment2D &segment1, Segment2D &segment2) {
-    auto* retval = (Point2D*)malloc(sizeof(Point2D));
+Point2D segmentIntersection(Segment2D &segment1, Segment2D &segment2) {
+    //auto* retval = (Point2D*)malloc(sizeof(Point2D));
     if (segment1==segment2){
-        *retval = segment1.getA();
+        return segment1.getA();
         //std::cout<<"Intersection: "<<*retval<<std::endl;
-        return retval;
     }
 
     const Point2D& C = segment2.getA();
@@ -41,33 +40,32 @@ Point2D* segmentIntersection(Segment2D &segment1, Segment2D &segment2) {
 
     double determinant = a1 * b2 - a2 * b1;
 
-    *retval = Point2D(DBL_MIN,DBL_MIN);
     if ((long)(determinant*1000) == 0L) {
         //std::cout<<"det = 0: "<<*retval<<std::endl;
-        return retval;
+        return {DBL_MIN,DBL_MIN};
     } else {
         double x = (b2 * c1 - b1 * c2) / determinant;
         double y = (a1 * c2 - a2 * c1) / determinant;
-        *retval = Point2D(x, y);
+
+        Point2D p(x,y);
 
         //std::cout<<"Point: "<<*retval<<std::endl;
         //std::cout<<"i1: "<<segment1<<segment1.containsPoint(*retval)<<std::endl;
         //std::cout<<"i2: "<<segment2<<segment2.containsPoint(*retval)<<std::endl;
 
-        if (!segment1.containsPoint(*retval) ||
-            !segment2.containsPoint(*retval)){
-            *retval = Point2D(DBL_MIN,DBL_MIN);
+        if (!segment1.containsPoint(p) ||
+            !segment2.containsPoint(p)){
 
-            return retval;
+            return {DBL_MIN,DBL_MIN};
         }
 
         //std::cout<<"Intersection: "<<*retval<<std::endl;
-        return retval;
+        return {p};
     }
 }
 
-Point2D* Segment2D::intersection(AbstractLine* line) {
-    auto* line2D = dynamic_cast<Line2D*>(line);
+Point2D Segment2D::intersection(AbstractLine &line) {
+    auto* line2D = dynamic_cast<Line2D*>(&line);
     if (line2D){
         //std::cout<<"abstract line is line"<<std::endl;
         Vector2D vector = (*line2D).getLineVector();
@@ -80,18 +78,17 @@ Point2D* Segment2D::intersection(AbstractLine* line) {
 
         //std::cout<<vector<<p1<<p2<<std::endl<<std::endl;
 
-        Segment2D lineSegment = Segment2D(p1,p2);
+        Segment2D lineSegment(p1,p2);
         //std::cout<<lineSegment<<std::endl;
-        Point2D *point2D = segmentIntersection(*this,lineSegment);
-        return point2D;
+        return segmentIntersection(*this,lineSegment);
     }
 
-    auto* segment2D = dynamic_cast<Segment2D*>(line);
+    auto* segment2D = dynamic_cast<Segment2D*>(&line);
 
     if (segment2D){
         //std::cout<<"abstract line is segment"<<std::endl;
-        Point2D* point2D = segmentIntersection(*this,*segment2D);
-        return point2D;
+
+        return segmentIntersection(*this,*segment2D);
     }
     throw std::runtime_error("Bad cast (Segment2D.cpp, line 42)");
 }

@@ -6,17 +6,17 @@
 #include <set>
 
 
-
-class TestCase {
+ class TestCase {
 private:
     std::string testClassName;
     std::string testName;
+    std::string testHeader;
 
     std::ostream &log;
     std::ostream &err;
 
     void printTestContext(std::ostream &os){
-        os << testClassName << ", \""<<testName<<"\": ";
+        os << testClassName <<", "<<testName<<" ("<<testHeader<<"): ";
     }
     void testPassed(){
         printTestContext(log);
@@ -27,6 +27,7 @@ private:
         err<<"test failed"<<std::endl<<"    ";
     }
     void onTestEnd(bool passed){
+        testHeader="";
         if (passed){
             log<<"\n\n";
             return;
@@ -38,6 +39,11 @@ public:
     TestCase(std::string testClassName, std::string testName, std::ostream &log, std::ostream &err) :
             testClassName(std::move(testClassName)),testName(std::move(testName)) ,
             log(log), err(err) {
+    }
+
+    TestCase name(std::string name){
+        testHeader = std::move(name);
+        return *this;
     }
 
     template<typename T>
@@ -52,6 +58,32 @@ public:
         err<<"Expected: "<<expected<<", Actual: "<<actual;
         onTestEnd(false);
     }
+
+    template<typename T>
+    void assertTrue(T value){
+        if (value) {
+            testPassed();
+            onTestEnd(true);
+            return;
+        }
+
+        testFailed();
+        err<<"value is not \"true\"";
+        onTestEnd(false);
+    }
+
+     template<typename T>
+     void assertFalse(T value){
+         if (!value) {
+             testPassed();
+             onTestEnd(true);
+             return;
+         }
+
+         testFailed();
+         err<<"value is not \"false\"";
+         onTestEnd(false);
+     }
 };
 
 class Test {

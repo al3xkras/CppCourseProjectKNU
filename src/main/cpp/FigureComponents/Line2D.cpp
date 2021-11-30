@@ -1,13 +1,13 @@
 #include "Line2D.h"
 #include "iostream"
 
-Point2D* Line2D::intersection(AbstractLine* other) {
-    auto *segment2D = dynamic_cast<Segment2D*>(other);
+Point2D Line2D::intersection(AbstractLine &other) {
+    auto *segment2D = dynamic_cast<Segment2D*>(&other);
     if (segment2D){
-        Point2D* point2D = (*segment2D).intersection(this);
-        return point2D;
+        return (*segment2D).intersection(*this);
     }
-    auto *line2D = dynamic_cast<Line2D*>(other);
+    auto* line2D = dynamic_cast<Line2D*>(&other);
+
     if (line2D){
         double x11 = 0;
         double y11 = (*this).getH();
@@ -20,13 +20,11 @@ Point2D* Line2D::intersection(AbstractLine* other) {
         double v22 = (*line2D).getLineVector().getY();
 
         if (y12==y11 && (long)((v11/v12)*1000L) == (long)((v21/v22)*1000L)){
-            auto* point2D = (Point2D*)malloc(sizeof(Point2D));
-            (*point2D) = Point2D(0,y11);
-            return point2D;
+            return {0,y11};
         }
 
         if ((long)((v21*v12-v22*v11)*1000)==0){
-            return nullptr;
+            return {DBL_MIN,DBL_MIN};
         }
 
         double _1 = v11*v12/(v21*v12-v22*v11);
@@ -35,10 +33,7 @@ Point2D* Line2D::intersection(AbstractLine* other) {
         double x = _1*_2;
         double y = y11 + v21/v11*(x-x11);
 
-        auto* point2D = (Point2D*)malloc(sizeof(Point2D));
-        (*point2D) = Point2D(x,y);
-
-        return point2D;
+        return {x,y};
     }
     std::cout<<"Bad cast (Line2D.cpp, line 37)";
     throw std::bad_cast();

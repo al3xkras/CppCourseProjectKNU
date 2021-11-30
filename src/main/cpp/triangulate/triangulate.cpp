@@ -415,7 +415,7 @@ bool diagonal ( int im1, int ip1, int n, int prev_node[], int next_node[],
 //
 //    Input, double X[N], Y[N], the coordinates of each vertex.
 //
-//    Output, bool DIAGONAL, the value of the test.
+//    Output, bool DIAGONAL, the value of the t.
 //
 {
     bool value;
@@ -473,7 +473,7 @@ bool diagonalie ( int im1, int ip1, int n, int next_node[], double x[],
 //
 //    Input, double X[N], Y[N], the coordinates of each vertex.
 //
-//    Output, bool DIAGONALIE, the value of the test.
+//    Output, bool DIAGONALIE, the value of the t.
 //
 {
     int first;
@@ -1006,7 +1006,7 @@ bool in_cone ( int im1, int ip1, int n, int prev_node[], int next_node[],
 //
 //    Input, double X[N], Y[N], the coordinates of each vertex.
 //
-//    Output, bool IN_CONE, the value of the test.
+//    Output, bool IN_CONE, the value of the t.
 //
 {
     int i;
@@ -1074,7 +1074,7 @@ bool intersect ( double xa, double ya, double xb, double yb, double xc,
 //    Input, double XA, YA, XB, YB, XC, YC, XD, YD, the X and Y
 //    coordinates of the four vertices.
 //
-//    Output, bool INTERSECT, the value of the test.
+//    Output, bool INTERSECT, the value of the t.
 //
 {
     bool value;
@@ -1147,7 +1147,7 @@ bool intersect_prop ( double xa, double ya, double xb, double yb, double xc,
 //    Input, double XA, YA, XB, YB, XC, YC, XD, YD, the X and Y
 //    coordinates of the four vertices.
 //
-//    Output, bool INTERSECT_PROP, the result of the test.
+//    Output, bool INTERSECT_PROP, the result of the t.
 //
 {
     double t1;

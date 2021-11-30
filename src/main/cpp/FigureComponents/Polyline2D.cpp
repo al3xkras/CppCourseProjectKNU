@@ -21,18 +21,15 @@ bool Polyline2D::hasSelfIntersections() {
         for (int j=0; j<segments.size(); j++){
             if (i==j) continue;
 
-            Point2D* intersection = segments[i].intersection(&segments[j]);
+            Point2D intersection = segments[i].intersection(segments[j]);
 
-            if (intersection == nullptr ||
-                    (j == i+1 && (*intersection) == segments[i].getB()) ||
-                    (i == j+1 && (*intersection) == segments[j].getB())){
+            if (intersection == notAPoint ||
+                    (j == i+1 && intersection == segments[i].getB()) ||
+                    (i == j+1 && intersection == segments[j].getB())){
                 continue;
             }
-            if ((*intersection)!=notAPoint){
-                std::cout<<*intersection<<std::endl;
-                free(intersection);
-                return true;
-            }
+            std::cout<<intersection<<std::endl;
+            return true;
         }
     }
 

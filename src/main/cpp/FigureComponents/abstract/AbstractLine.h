@@ -5,8 +5,9 @@
 #include "../Point2D.h"
 #include "AbstractPoint.h"
 
-class AbstractLine {
-    virtual AbstractPoint* intersection(AbstractLine* other) = 0;
+ class AbstractLine {
+ public:
+    virtual ~AbstractLine() = default;
 };
 
 

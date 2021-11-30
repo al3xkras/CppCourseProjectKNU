@@ -4,7 +4,8 @@
 #include "src/main/cpp/Figures/Triangle2D.h"
 #include "src/main/cpp/Figures/Polygon2D.h"
 #include "src/main/cpp/FigureComponents/Polyline2D.h"
-#include "src/test/Test.cpp"
+#include "src/test/cpp/Test.cpp"
+#include "src/test/cpp/TestLine.cpp"
 
 void testFigureComponents(){
     Point2D point1(0,0);
@@ -17,17 +18,14 @@ void testFigureComponents(){
     Line2D line1(1.0, -1.0, 1.0);
     Line2D line2(1.0,2,-2);
     //std::cout<<segment2D<<std::endl;
-    Point2D* p1 = segment1.intersection(&line1);
-    Point2D* p2 = segment1.intersection(&segment2);
-    Point2D* p3 = line1.intersection(&line2);
+    Point2D p1 = segment1.intersection(line1);
+    Point2D p2 = segment1.intersection(segment2);
+    Point2D p3 = line1.intersection(line2);
 
-    std::cout<<"p1 "<<*p1<<std::endl;
-    std::cout<<"p2 "<<*p2<<std::endl;
-    std::cout<<"p3 "<<*p3<<std::endl;
+    std::cout<<"p1 "<<p1<<std::endl;
+    std::cout<<"p2 "<<p2<<std::endl;
+    std::cout<<"p3 "<<p3<<std::endl;
 
-    free(p1);
-    free(p2);
-    free(p3);
 }
 
 void testFigures(){
@@ -112,16 +110,12 @@ void testArea(){
 }
 
 void runTests(){
-
+    TestLine testLine(std::cout, std::cerr);
+    testLine.run();
 }
 
 int main() {
-    Test testLine("TestLine",std::cout, std::cerr);
+    runTests();
 
-    testLine.test("test1").assertEquals(1,0);
-    testLine.test("test2").assertEquals(1,1);
-    testLine.test("test3").assertEquals(1,12);
-    testLine.test("test4").assertEquals(1,1);
-    //testArea();
     return 0;
 }

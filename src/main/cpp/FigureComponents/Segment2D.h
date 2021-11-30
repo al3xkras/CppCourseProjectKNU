@@ -15,9 +15,9 @@ public:
     Segment2D(): a(), b() {};
 
     Segment2D(Point2D a, Point2D b);
-    double angleWithPoint(Point2D point);
+    double angleWithPoint(const Point2D& point);
 
-    Point2D* intersection(AbstractLine* other) override;
+    Point2D intersection(AbstractLine &other);
 
     bool containsPoint(Point2D& point);
 
@@ -31,6 +31,8 @@ public:
     const Point2D &getB() const;
 
     virtual ~Segment2D();
+
+
 };
 
 

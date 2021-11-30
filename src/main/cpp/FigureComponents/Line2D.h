@@ -15,7 +15,7 @@ public:
         this->h_Y=h_x2;
     }
 
-    Point2D* intersection(AbstractLine* other) override;
+    Point2D intersection(AbstractLine &other);
 
     bool operator==(const Line2D &other) const {
         return h_Y == other.h_Y && line_vector == other.line_vector;

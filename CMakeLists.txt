@@ -25,5 +25,5 @@ add_executable(CppCourseProjectKNU main.cpp
         src/main/cpp/FigureComponents/Polyline2D.cpp
         src/main/cpp/triangulate/triangulate.cpp
         src/main/cpp/triangulate/triangulate.h src/test/cpp/TestLine.cpp
-        src/test/Test.cpp
+        src/test/cpp/Test.cpp
         )
