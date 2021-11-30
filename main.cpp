@@ -4,6 +4,7 @@
 #include "src/main/cpp/Figures/Triangle2D.h"
 #include "src/main/cpp/Figures/Polygon2D.h"
 #include "src/main/cpp/FigureComponents/Polyline2D.h"
+#include "src/test/Test.cpp"
 
 void testFigureComponents(){
     Point2D point1(0,0);
@@ -110,7 +111,17 @@ void testArea(){
     std::cout<<"actual: "<<polygon2D.area()<<" expected: "<<real<<std::endl;
 }
 
+void runTests(){
+
+}
+
 int main() {
-    testArea();
+    Test testLine("TestLine",std::cout, std::cerr);
+
+    testLine.test("test1").assertEquals(1,0);
+    testLine.test("test2").assertEquals(1,1);
+    testLine.test("test3").assertEquals(1,12);
+    testLine.test("test4").assertEquals(1,1);
+    //testArea();
     return 0;
 }
