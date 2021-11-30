@@ -17,7 +17,9 @@ private:
 
     void printTestContext(std::ostream &os){
         os << testClassName <<", "<<testName<<" ("<<testHeader<<"): ";
+        name("");
     }
+
     void testPassed(){
         printTestContext(log);
         log<<"test passed"<<std::endl;
@@ -27,7 +29,7 @@ private:
         err<<"test failed"<<std::endl<<"    ";
     }
     void onTestEnd(bool passed){
-        testHeader="";
+
         if (passed){
             log<<"\n\n";
             return;
@@ -37,12 +39,12 @@ private:
 
 public:
     TestCase(std::string testClassName, std::string testName, std::ostream &log, std::ostream &err) :
-            testClassName(std::move(testClassName)),testName(std::move(testName)) ,
+            testClassName(std::move(testClassName)),testName(std::move(testName)),
             log(log), err(err) {
     }
 
-    TestCase name(std::string name){
-        testHeader = std::move(name);
+    TestCase &name(const std::string &name){
+        testHeader = name;
         return *this;
     }
 
