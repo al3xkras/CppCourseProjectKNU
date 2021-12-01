@@ -5,7 +5,8 @@
 #include "src/main/cpp/Figures/Polygon2D.h"
 #include "src/main/cpp/FigureComponents/Polyline2D.h"
 #include "src/test/cpp/Test.cpp"
-#include "src/test/cpp/TestLine.cpp"
+#include "src/test/cpp/TestLine2D.cpp"
+#include "src/test/cpp/TestSegment2D.cpp"
 
 void testFigureComponents(){
     Point2D point1(0,0);
@@ -110,8 +111,11 @@ void testArea(){
 }
 
 void runTests(){
-    TestLine testLine(std::cout, std::cerr);
+    TestLine2D testLine(std::cout, std::cerr);
+    TestSegment2D testSegment(std::cout, std::cerr);
+
     testLine.run();
+    testSegment.run();
 }
 
 int main() {

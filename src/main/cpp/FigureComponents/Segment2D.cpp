@@ -27,25 +27,25 @@ Point2D segmentIntersection(Segment2D &segment1, Segment2D &segment2) {
         //std::cout<<"Intersection: "<<*retval<<std::endl;
     }
 
-    const Point2D& C = segment2.getA();
-    const Point2D& D = segment2.getB();
+    Point2D C = segment2.getA();
+    Point2D D = segment2.getB();
 
-    double a1 = segment1.getB().getY() - segment1.getA().getY();
-    double b1 = segment1.getA().getX() - segment1.getB().getX();
-    double c1 = a1 * (segment1.getA().getX()) + b1 * (segment1.getA().getY());
+    long double a1 = segment1.getB().getY() - segment1.getA().getY();
+    long double b1 = segment1.getA().getX() - segment1.getB().getX();
+    long double c1 = a1 * (segment1.getA().getX()) + b1 * (segment1.getA().getY());
 
-    double a2 = D.getY() - C.getY();
-    double b2 = C.getX() - D.getX();
-    double c2 = a2 * (C.getX()) + b2 * (C.getY());
+    long double a2 = D.getY() - C.getY();
+    long double b2 = C.getX() - D.getX();
+    long double c2 = a2 * C.getX() + b2 * C.getY();
 
-    double determinant = a1 * b2 - a2 * b1;
+    long double determinant = a1 * b2 - a2 * b1;
 
     if ((long)(determinant*1000) == 0L) {
         //std::cout<<"det = 0: "<<*retval<<std::endl;
         return {DBL_MIN,DBL_MIN};
     } else {
-        double x = (b2 * c1 - b1 * c2) / determinant;
-        double y = (a1 * c2 - a2 * c1) / determinant;
+        auto x = (double)((b2 * c1 - b1 * c2) / determinant);
+        auto y = (double)((a1 * c2 - a2 * c1) / determinant);
 
         Point2D p(x,y);
 
@@ -73,9 +73,10 @@ Point2D Segment2D::intersection(AbstractLine &line) {
         double x_min = std::min(a.getX(),b.getX());
         double x_max = std::max(a.getX(),b.getX());
 
-        Point2D p1(x_min,(*line2D)(x_min));
-        Point2D p2(x_max,(*line2D)(x_max));
+        Point2D p1 = {x_min-1,(*line2D)(x_min-1)};
+        Point2D p2 = {x_max+1,(*line2D)(x_max+1)};
 
+        //std::cout<<*this<<p1<<p2<<std::endl;
         //std::cout<<vector<<p1<<p2<<std::endl<<std::endl;
 
         Segment2D lineSegment(p1,p2);
@@ -90,7 +91,7 @@ Point2D Segment2D::intersection(AbstractLine &line) {
 
         return segmentIntersection(*this,*segment2D);
     }
-    throw std::runtime_error("Bad cast (Segment2D.cpp, line 42)");
+    throw std::runtime_error("Bad cast (Segment2D.cpp)");
 }
 
 

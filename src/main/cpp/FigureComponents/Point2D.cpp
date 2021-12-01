@@ -27,6 +27,7 @@ double Point2D::dotWith(Point2D other) {
 }
 
 double Point2D::distanceTo(Point2D other) {
+    if (other.getX()==DBL_MIN || other.getY()==DBL_MIN) return -DBL_MIN;
     double dist = sqrt(
             pow(getX()-other.getX(),2)+
             pow(getY()-other.getY(),2));

@@ -61,6 +61,19 @@ public:
         onTestEnd(false);
     }
 
+     template<typename T>
+     void assertNotEquals(T expected, T actual){
+         if (expected!=actual) {
+             testPassed();
+             onTestEnd(true);
+             return;
+         }
+
+         testFailed();
+         err<<"Expected and actual values are equal: "<<actual;
+         onTestEnd(false);
+     }
+
     template<typename T>
     void assertTrue(T value){
         if (value) {
