@@ -28,7 +28,7 @@ bool Polyline2D::hasSelfIntersections() {
                     (i == j+1 && intersection == segments[j].getB())){
                 continue;
             }
-            std::cout<<intersection<<std::endl;
+            //std::cout<<intersection<<std::endl;
             return true;
         }
     }

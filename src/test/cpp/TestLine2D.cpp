@@ -58,8 +58,6 @@ public:
         _.name("has intersection 1").assertTrue(Point2D(2,0).distanceTo(p2)<eps);
         _.name("has intersection 2").assertTrue(Point2D(6,2).distanceTo(p3)<eps);
         _.name("has intersection 3").assertTrue(Point2D(4,1).distanceTo(p4)<eps);
-
-
     }
 
 

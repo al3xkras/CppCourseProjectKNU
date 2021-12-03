@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <vector>
+#include <set>
 #include "../FigureComponents/Point2D.h"
 #include "../Figures/abstract/Figure.h"
 
@@ -30,12 +31,37 @@ public:
     virtual ~Triangle2D();
 
     bool isConvex() override;
-    double perimeter() override;
 
-    TriangleEdgesLength getEdgesLength();
+    double p() const;
+
+    double perimeter() override{
+        return p();
+    }
+
+    TriangleEdgesLength getEdgesLength() const;
     double area();
 
     std::ostream &toString(std::ostream &os) override;
+
+    bool operator==(const Triangle2D &rhs) const{
+        std::set<Point2D> p1(points.begin(),points.end());
+        std::set<Point2D> p2(rhs.points.begin(),rhs.points.end());
+        return p1==p2;
+    }
+
+    bool operator!=(const Triangle2D &rhs) const{
+        return !(*this==rhs);
+    }
+
+    bool operator<(const Triangle2D &rhs) const{
+        return (p()<rhs.p());
+    }
+
+    bool operator>(const Triangle2D &rhs) const;
+
+    bool operator<=(const Triangle2D &rhs) const;
+
+    bool operator>=(const Triangle2D &rhs) const;
 };
 
 

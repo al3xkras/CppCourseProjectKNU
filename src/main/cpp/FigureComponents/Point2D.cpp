@@ -26,7 +26,7 @@ double Point2D::dotWith(Point2D other) {
     return dot;
 }
 
-double Point2D::distanceTo(Point2D other) {
+double Point2D::distanceTo(Point2D other) const {
     if (other.getX()==DBL_MIN || other.getY()==DBL_MIN) return -DBL_MIN;
     double dist = sqrt(
             pow(getX()-other.getX(),2)+
@@ -58,4 +58,24 @@ bool Point2D::operator!=(const Point2D &rhs) const {
 
 Point2D::~Point2D() {
    // std::cout<<*this<<" was deleted"<<std::endl;
+}
+
+bool Point2D::operator<(const Point2D &rhs) const {
+    if (x < rhs.x)
+        return true;
+    if (rhs.x < x)
+        return false;
+    return y < rhs.y;
+}
+
+bool Point2D::operator>(const Point2D &rhs) const {
+    return rhs < *this;
+}
+
+bool Point2D::operator<=(const Point2D &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Point2D::operator>=(const Point2D &rhs) const {
+    return !(*this < rhs);
 }

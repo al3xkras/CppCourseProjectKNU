@@ -11,7 +11,7 @@ Triangle2D::~Triangle2D() {
 
 }
 
-TriangleEdgesLength Triangle2D::getEdgesLength() {
+TriangleEdgesLength Triangle2D::getEdgesLength() const {
     double AB = points[0].distanceTo(points[1]);
     double BC = points[1].distanceTo(points[2]);
     double AC = points[0].distanceTo(points[2]);
@@ -26,7 +26,7 @@ double Triangle2D::area() {
     return sqrt(p*(p-length.getAb())*(p-length.getBc())*(p-length.getAc()));
 }
 
-double Triangle2D::perimeter() {
+double Triangle2D::p() const{
     TriangleEdgesLength length = getEdgesLength();
     return (length.getAb()+length.getBc()+length.getAc());
 }
@@ -41,10 +41,22 @@ bool Triangle2D::isConvex() {
 
 std::ostream &Triangle2D::toString(std::ostream &os) {
     os << "Triangle2D: ";
-    for (int i=0; i<3; i++){
-        os<<'('<<points[i]<<"), ";
+    for (const Point2D& p: points){
+        os<<'('<<p<<"), ";
     }
     return os;
+}
+
+bool Triangle2D::operator>(const Triangle2D &rhs) const{
+    return rhs < *this;
+}
+
+bool Triangle2D::operator<=(const Triangle2D &rhs) const{
+    return !(rhs < *this);
+}
+
+bool Triangle2D::operator>=(const Triangle2D &rhs) const{
+    return !(*this < rhs);
 }
 
 TriangleEdgesLength::TriangleEdgesLength(double ab, double bc, double ac) : AB(ab), BC(bc), AC(ac) {}

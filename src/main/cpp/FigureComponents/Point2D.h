@@ -21,7 +21,8 @@ public:
     double getCoordinate(int index) override;
 
     double dotWith(Point2D other);
-    double distanceTo(Point2D other);
+
+    double distanceTo(Point2D other) const;
 
     double getX() const;
     double getY() const;
@@ -31,6 +32,14 @@ public:
     bool operator==(const Point2D &rhs) const;
 
     bool operator!=(const Point2D &rhs) const;
+
+    bool operator<(const Point2D &rhs) const;
+
+    bool operator>(const Point2D &rhs) const;
+
+    bool operator<=(const Point2D &rhs) const;
+
+    bool operator>=(const Point2D &rhs) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Point2D &point);
 

@@ -97,10 +97,10 @@ Point2D Segment2D::intersection(AbstractLine &line) {
 
 bool Segment2D::containsPoint(Point2D& point){
     if (point==a || point==b) return true;
-    long v_1_x = (long)((a.getX()-b.getX())*10000);
-    long v_1_y = (long)((a.getY()-b.getY())*10000);
-    long v_2_x = (long)((a.getX()-point.getX())*10000);
-    long v_2_y = (long)((a.getY()-point.getY())*10000);
+    long v_1_x = (long)((a.getX()*10000-b.getX()*10000));
+    long v_1_y = (long)((a.getY()*10000-b.getY()*10000));
+    long v_2_x = (long)((a.getX()*10000-point.getX()*10000));
+    long v_2_y = (long)((a.getY()*10000-point.getY()*10000));
 
     //std::cout<<v_1_x<<' '<<v_1_y<<' '<<v_2_x<<' '<<v_2_y<<std::endl;
     if (v_1_x==0){
@@ -118,7 +118,7 @@ bool Segment2D::containsPoint(Point2D& point){
          v2 = (long)((double)v_1_y/v_2_y);
 
     //std::cout<<'('<<v1<<' '<<v2<<')'<<std::endl;
-    return (v1 == v2 & v1>0 & v2>0);
+    return (v1 == v2 & v1>0);
 }
 
 std::ostream &operator<<(std::ostream &os, const Segment2D &line) {
