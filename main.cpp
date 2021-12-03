@@ -112,10 +112,10 @@ void testArea(){
 
 void runTests(){
     TestLine2D testLine(std::cout, std::cerr);
-    TestSegment2D testSegment(std::cout, std::cerr);
+    //TestSegment2D testSegment(std::cout, std::cerr);
 
     testLine.run();
-    testSegment.run();
+    //testSegment.run();
 }
 
 int main() {

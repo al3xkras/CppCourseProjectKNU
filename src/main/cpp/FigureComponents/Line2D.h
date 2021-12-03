@@ -1,6 +1,7 @@
 #ifndef CPPCOURSEPROJECTKNU_LINE2D_H
 #define CPPCOURSEPROJECTKNU_LINE2D_H
 
+#include <ostream>
 #include "Vector2D.h"
 #include "Point2D.h"
 #include "Segment2D.h"
@@ -31,6 +32,8 @@ public:
     Vector2D getLineVector() {
         return line_vector;
     }
+
+    friend std::ostream &operator<<(std::ostream &os, const Line2D &d);
 };
 
 

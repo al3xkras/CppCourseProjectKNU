@@ -4,22 +4,23 @@
 
 class TestLine2D{
 private:
-    Test t;
+    Test test;
     std::ostream &log;
     std::ostream &err;
 public:
 
-    TestLine2D(std::ostream &log, std::ostream &err) : log(log), err(err), t("TestLine2D", log, err){
+    TestLine2D(std::ostream &log, std::ostream &err) : log(log), err(err), test("TestLine2D", log, err){
 
     }
 
     void run(){
         testLineIntersection();
         testLineAndSegmentIntersection();
+        testEquals();
     }
 
     void testLineIntersection(){
-        TestCase _ = t.test("testLineIntersection");
+        TestCase _ = test.test("testLineIntersection");
 
         Line2D line1(0,1,1);
         Line2D line2(1,1,1);
@@ -39,7 +40,7 @@ public:
 
     void testLineAndSegmentIntersection(){
         double eps = 0.1;
-        TestCase _ = t.test("testLineAndSegmentIntersection");
+        TestCase _ = test.test("testLineAndSegmentIntersection");
 
         Line2D line1(-1,2,1);
         Segment2D segment1(Point2D(1,-1),Point2D(5,-2));
@@ -60,5 +61,21 @@ public:
 
 
     }
+
+
+    void testEquals(){
+        TestCase _ = test.test("testEquals");
+
+        Line2D line1(0,1,1);
+        Line2D line2(0,1,1.00001);
+        Line2D line3(1,1,1);
+        Line2D line4(0,1,1);
+
+        _.name("equals 1").assertEquals(line1,line4);
+        _.name("equals 2").assertNotEquals(line1,line2);
+        _.name("equals 3").assertNotEquals(line1,line3);
+        _.name("equals 4").assertEquals(line1,line1);
+    }
+
 
 };

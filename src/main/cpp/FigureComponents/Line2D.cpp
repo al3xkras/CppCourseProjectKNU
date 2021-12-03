@@ -42,3 +42,8 @@ Point2D Line2D::intersection(AbstractLine &other) {
 double Line2D::operator()(const double x1) {
     return h_Y + line_vector.getY() / line_vector.getX() * x1 ;
 }
+
+std::ostream &operator<<(std::ostream &os, const Line2D &d) {
+    os << " h_Y: " << d.h_Y << " line_vector: " << d.line_vector;
+    return os;
+}
